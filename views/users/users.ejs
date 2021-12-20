@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+    <script src="/javascripts/users/GetCookie.js"></script>
+    <script src="/javascripts/users/ChangeLanguage.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="/pics/JrChat.png" />
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <meta charset="UTF-8" />
+    <title>JrChat</title>
+</head>
+
+<body class="mdui-theme-layout-dark">
+    <script>
+        var path = "/index.html"
+
+        function rickroll() { //你懂的
+            window.alert('Never gonna give you up, never gonna let you down~');
+        }
+        var LoggedInUser = getCookie("username"); //检测user是否登陆的cookie
+    </script>
+    <div class="mdui-toolbar mdui-color-grey-900">
+        <a href="/" id="title" class="mdui-typo-headline mdui-hidden-xs">JrChat</a>
+        <div class="mdui-toolbar-spacer"></div>
+        <script>
+            var language;
+
+            function chooselangdetect() { //切换语言 - 这个函数是检测下面select的选中参数并改动
+                var objchoose = document.getElementById("selector");
+                language = objchoose.options[objchoose.selectedIndex].lang; //selector选择语言的检测
+            }
+        </script>
+        <select id="selector" onchange="chooselangdetect(), changelang(language, path)"> <!-- changelang函数路径：js/changelanguage.js -->
+                <option lang="Chinese">简体中文</option>
+                <option lang="English">English</option>
+            </select>
+        <a href="/login" id="login" class="mdui-typo-hreadline mdui-hidden-xs">登录/注册</a>
+        <p id="username"></p>
+    </div>
+    <div id="friends">
+        <div onclick="loadChat(1)" class="user mdui-ripple">
+            <p id="chat1" class="userName"></p>
+            <img id="img1" src="" class="userImg" />
+        </div>
+        <div onclick="loadChat(2)" class="user mdui-ripple">
+            <p id="chat2" class="userName"></p>
+            <img id="img2" src="" class="userImg" />
+        </div>
+        <div onclick="loadChat(3)" class="user mdui-ripple">
+            <p id="chat3" class="userName"></p>
+            <img id="img3" src="" class="userImg" />
+        </div>
+        <div onclick="loadChat(4)" class="user mdui-ripple">
+            <p id="chat4" class="userName"></p>
+            <img id="img4" src="" class="userImg" />
+        </div>
+        <div onclick="loadChat(5)" class="user mdui-ripple">
+            <p id="chat5" class="userName"></p>
+            <img id="img5" src="" class="userImg" />
+        </div>
+        <div onclick="loadChat(6)" class="user mdui-ripple">
+            <p id="chat6" class="userName"></p>
+            <img id="img6" src="" class="userImg" />
+        </div>
+        <p id="nochat"></p>
+    </div>
+    <p id="easteregg" onclick="rickroll()">太无聊了？点我！</p>
+    <div class="pages">
+        <button class="previous" onclick="previous()" id="previous" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple">
+                <i class="mdui-icon material-icons">arrow_back</i>
+            </button>
+        <button class="previous" id="next" onclick="next()" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple">
+                <i class="mdui-icon material-icons">arrow_forward</i>
+            </button>
+        <p class="previous" id="page">ss</p>
+    </div>
+    <p id="footer">Made by ItzJerry & BcmRayCrazy<br>Using MDUI, express, socket.io</p>
+    <script>
+        function DetectLogin() { //检测login      实现为右上角的 “已登录为”
+            if (LoggedInUser != "") {
+                loginchange = document.getElementById("login");
+                loginchange.style.display = "none";
+                document.getElementById("username").innerHTML = "已登录为: " + LoggedInUser;
+            }
+        }
+        DetectLogin();
+        window.onload = function() {
+            chooselangdetect();
+            changelang(language, path)
+        }
+    </script>
+    <script src="/javascripts/users/loadchat.js"></script>
+    <script src="/javascripts/users/loadFriend.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js" integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+</body>
+
+</html>

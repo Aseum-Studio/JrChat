@@ -1,0 +1,20 @@
+h1 {
+    text-align: center;
+}
+
+#logintitle {
+    text-align: center;
+}
+
+#title {
+    text-decoration: none;
+    color: white;
+}
+
+option {
+    color: black;
+}
+
+select {
+    color: black;
+}
